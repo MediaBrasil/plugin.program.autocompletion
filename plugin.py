@@ -34,6 +34,7 @@ def start_info_actions(infos, params):
             except Exception:
                 return None
             window.setFocusId(300)
+            xbmc.sleep(600)
             get_kodi_json(method="Input.SendText",
                           params='{"text":"%s", "done":false}' % params.get("id"))
             return None
@@ -53,6 +54,7 @@ def pass_list_to_skin(data=[], handle=None, limit=False):
         xbmcplugin.addDirectoryItems(handle=handle,
                                      items=[(i.getProperty("path"), i, False) for i in items],
                                      totalItems=len(items))
+    xbmc.executebuiltin('Dialog.Close(busydialog)')
     xbmcplugin.endOfDirectory(handle)
 
 
